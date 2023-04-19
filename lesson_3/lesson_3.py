@@ -1,3 +1,4 @@
+"""This module providing Function to find substring in a file with one word per line."""
 import os
 from pympler import asizeof
 
@@ -11,7 +12,8 @@ from pympler import asizeof
 #     return results
 
 def find_in_file(file_name: str, pattern: str):
-    with open(file_name) as file:
+    """This function return line if find pattern."""
+    with open(file_name, encoding="utf-8") as file:
         while True:
             line: str = file.readline()
             if not line:
@@ -20,19 +22,18 @@ def find_in_file(file_name: str, pattern: str):
                 yield line
 
 pattern: str = input("Enter a pattern to search: ")
-file_name = "./rockyou.txt"
-results_file = "./results.txt"
+FILE_NAME = "./rockyou.txt"
+RESULTS_FILE = "./results.txt"
 
-data = find_in_file(file_name, pattern)
+data = find_in_file(FILE_NAME, pattern)
 results = list(data)
 
 print(f'\nPattern {pattern} was found {len(results)} in words\n')
-print(f't\The first words are: {results[:10]}\n')
+print(f'\nThe first words are: {results[:10]}\n')
 
-with open(results_file, "w") as file:
+with open(RESULTS_FILE, "w", encoding="utf-8") as file:
     file.writelines(results)
 
 print(f'The size of results is: {asizeof.asizeof(results, stats = 0)}\n')
 
-print(os.stat(results_file))
-
+print(os.stat(RESULTS_FILE))
