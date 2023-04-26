@@ -38,7 +38,7 @@ def players_find(players: list[dict], field: str, value: Any) -> list[dict]:
     return []
 
 
-def players_get_by_name(players: list[dict], name: str) -> dict | None:
+def players_get_by_name(players: list[dict], name: str) -> "dict | None":
     """If multiple players with same name - return the first one."""
     for player in players:
         if player["name"] == name:
